@@ -43,7 +43,7 @@ quantity = ''
 
 if len(sys.argv)==2 and sys.argv[1] =='default':
 	try:
-		with open('/Users/Lito/Desktop/currency/default.json','r') as default:
+		with open('default.json','r') as default:
 			default = json.load(default)
 			purchasePrice = str(default['ethereum']['price'])
 			quantity = str(default['ethereum']['amount'])

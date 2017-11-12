@@ -18,6 +18,8 @@ def castToFloat(x):
 	except Exception:
 		print 'Could not cast to float'
 
+
+
 def logic(quantity, purchasePrice, currentPrice):
 	if isNotEmpty(quantity) and isNotEmpty(purchasePrice) and isNotEmpty(currentPrice):
 		purchasePriceTotal = castToFloat(quantity)* castToFloat(purchasePrice)
@@ -44,7 +46,7 @@ quantity = ''
 
 if len(sys.argv)==2 and sys.argv[1] =='default':
 	try:
-		with open('/Users/Lito/Desktop/currency/default.json','r') as default:
+		with open('default.json','r') as default:
 			default = json.load(default)
 			purchasePrice = str(default['bitcoin']['price'])
 			quantity = str(default['bitcoin']['amount'])
