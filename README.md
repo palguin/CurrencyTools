@@ -63,6 +63,6 @@ which would look like `python litecoin.py default`
 ## *Alias*
 	If you care to make an alias for these scripts I recommend using something like
 	
-alias `bitcoin`="python $(echo(find ~/ -name bitcoin.py 2>dev/null) | head -n1) default"
-alias `ethereum`="python $(echo(find ~/ -name ethereum.py 2>dev/null) | head -n1) default"
-alias `litecoin`="python $(echo(find ~/ -name litecoin.py 2>dev/null) | head -n1) default"
+alias `bitcoin="python $(echo(find ~/ -name bitcoin.py 2>dev/null) | head -n1) default"`
+alias `ethereum="python $(echo(find ~/ -name ethereum.py 2>dev/null) | head -n1) default"`
+alias `litecoin="python $(echo(find ~/ -name litecoin.py 2>dev/null) | head -n1) default"`
