@@ -15,7 +15,7 @@ Python2
 
 ## *Files*
 
-	###default.json
+	### default.json
 	Allows you to store a purchase price of your currency and how much you possess.  
 
 	###bitcoin.py 
@@ -33,7 +33,7 @@ Python2
 	which would look like `python bitcoin.py default`
 
 
-	###ethereum.py
+	### ethereum.py
 	Calculates your gain/loss against a set purchase price and quantity of ethereum against the current market value which it gets via get request of `https://coinmarketcap.com/`
 
 	There are 3 accepted command line arguements for ethereum.py. 
@@ -48,7 +48,7 @@ Python2
 	which would look like `python ethereum.py default`
 
 
-	###litecoin.py
+	### litecoin.py
 	Calculates your gain/loss against a set purchase price and quantity of litecoin against the current market value which it gets via get request of `https://coinmarketcap.com/`
 
 	A single float/double/int which will be interpreted as the purchase price.
