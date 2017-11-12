@@ -3,24 +3,54 @@ import requests
 import json
 
 #Pablo Alguindigue
-'''First thing is purchase price'''
-'''Second thing is quantity of currency'''
+'''First input is purchase price'''
+'''Second input is quantity of currency'''
 
+'''New line spacing for printing'''
 def header(x):
 	print'\n'*x
 
+'''returns boolean'''
 def isNotEmpty(x):
 	return len(x)>0
 
+'''trys to cast x to a float, else quits'''
 def castToFloat(x):
 	try:
 		return float(x)
 	except Exception:
-		print 'Could not cast to float'
+		print 'Could not cast {} to float'.format(x)
+		sys.exit()
 
+'''returns only the current price of currency'''
+def getCurrentPrice():
+	r = requests.get('https://coinmarketcap.com/currencies/bitcoin/')
+	transferrable = []
 
+	if r.status_code ==200: 
+		for charachter in r.text[r.text.index('quote_price')+13:r.text.index('quote_price')+24]:
+			try:
+				charachter = int(charachter)
+			except Exception:
+				pass
+			if type(charachter) == int:
+				transferrable.append(charachter)
+			
+			if charachter == '.':
+				transferrable.append('.')
+	
 
-def logic(quantity, purchasePrice, currentPrice):
+		currentPrice = str()
+		for item in transferrable:
+			currentPrice+=str(item)
+		
+		return currentPrice
+	
+	else:
+		print 'Request to website did not succeed'
+
+'''prints your gain or loss at the moment of your currency investment'''
+def compute(quantity, purchasePrice, currentPrice):
 	if isNotEmpty(quantity) and isNotEmpty(purchasePrice) and isNotEmpty(currentPrice):
 		purchasePriceTotal = castToFloat(quantity)* castToFloat(purchasePrice)
 		currentPriceTotal = castToFloat(quantity)*castToFloat(currentPrice)
@@ -40,59 +70,66 @@ def logic(quantity, purchasePrice, currentPrice):
 	else:
 		print 'One of your variables is not set'
 
+	sys.exit()
+
+
+
+
+
+
+
+
+
+
+#Program start
+####################################################
+
 header(3)
 purchasePrice =''
 quantity = ''
 
+#if input is default, try and read default.json
 if len(sys.argv)==2 and sys.argv[1] =='default':
 	try:
 		with open('default.json','r') as default:
 			default = json.load(default)
-			purchasePrice = str(default['bitcoin']['price'])
-			quantity = str(default['bitcoin']['amount'])
+			
+			#make sure there is value in vars
+			if isNotEmpty(str(default['bitcoin']['price'])) and isNotEmpty(str(default['bitcoin']['amount'])):
+				purchasePrice = str(default['bitcoin']['price'])
+				quantity = str(default['bitcoin']['amount'])
+			
+			else:
+				print 'I think your one of your values is empty in default.json'
+				sys.exit()
 	
 	except Exception:
-		print 'Could not find defaut.json'
+		print 'Could not find default.json'
+		print 'Might have to set default.json location'
 
-elif len(sys.argv)==2 and not isNotEmpty(quantity):
+
+#if input is price, only return the price
+elif len(sys.argv)==2 and sys.argv[1] =='price':
+	print 'Current bitcoin price is: ',getCurrentPrice()
+	sys.exit()
+
+
+#if the there was a single command line arguement passed
+elif len(sys.argv)==2:
 	purchasePrice = sys.argv[1]
 	quantity = raw_input('Enter amount of Bitcoin: ')
 
+
+#if the there was a both purchase price and quantity set as arguements
 elif len(sys.argv)==3:
 	purchasePrice = sys.argv[1]
 	quantity = sys.argv[2]
 
-elif len(sys.argv)>3:
-	print 'Not sure what you\'re trying to do'
-	header()
-	sys.exit(1)
-
+#if nothing is specified, then ask
 else:
 	purchasePrice = raw_input('Enter Purchase Price: ')
 	quantity = raw_input('Enter amount of Bitcoin: ')
-
-
-r = requests.get('https://coinmarketcap.com/currencies/bitcoin/')
-transferrable = []
-
-if r.status_code ==200: 
-	for charachter in r.text[r.text.index('quote_price')+13:r.text.index('quote_price')+24]:
-		try:
-			charachter = int(charachter)
-		except Exception:
-			pass
-		if type(charachter) == int:
-			transferrable.append(charachter)
-		
-		if charachter == '.':
-			transferrable.append('.')
 	
+compute(quantity, purchasePrice, getCurrentPrice())
 
-	currentPrice = str()
-	for item in transferrable:
-		currentPrice+=str(item)
-	
-	logic(quantity, purchasePrice, currentPrice)
 
-else:
-	print 'Request to website did not succeed'

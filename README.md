@@ -21,7 +21,7 @@ Allows you to store a purchase price of your currency and how much you possess.
 ### bitcoin.py 
 Calculates your gain/loss against a set purchase price and quantity of bitcoin against the current market value which it gets via get request of `https://coinmarketcap.com/`
 
-There are 3 accepted command line arguements for bitcoin.py. 
+There are 4 accepted command line arguements for bitcoin.py. 
 	
 A single float/double/int which will be interpreted as the purchase price.
 which would look like `python bitcoin.py 5000`
@@ -32,11 +32,13 @@ which would look like `python bitcoin.py 5000 3.78`
 specify to use the `default.json` file where you can set your purchase price and amount.
 which would look like `python bitcoin.py default`
 
+specify price and it will return only the current price of the currency
+which would look like `python bitcoin.py price`
 
 ### ethereum.py
 Calculates your gain/loss against a set purchase price and quantity of ethereum against the current market value which it gets via get request of `https://coinmarketcap.com/`
 
-There are 3 accepted command line arguements for ethereum.py. 
+There are 4 accepted command line arguements for ethereum.py. 
 	
 A single float/double/int which will be interpreted as the purchase price.
 which would look like `python ethereum.py 200`
@@ -47,9 +49,14 @@ which would look like `python ethereum.py 200 3.78`
 specify to use the `default.json` file where you can set your purchase price and amount.
 which would look like `python ethereum.py default`
 
+specify price and it will return only the current price of the currency
+which would look like `python ethereum.py price`
+
 
 ### litecoin.py
 Calculates your gain/loss against a set purchase price and quantity of litecoin against the current market value which it gets via get request of `https://coinmarketcap.com/`
+
+There are 4 accepted command line arguemnets for litecoin.py
 
 A single float/double/int which will be interpreted as the purchase price.
 which would look like `python litecoin.py 200`
@@ -59,6 +66,9 @@ which would look like `python litecoin.py 200 3.78`
 
 specify to use the `default.json` file where you can set your purchase price and amount.
 which would look like `python litecoin.py default`
+
+specify price and it will return only the current price of the currency
+which would look like `python litecoin.py price`
 
 ## *Alias*
 	If you care to make an alias for these scripts I recommend using something like
