@@ -1,0 +1,15 @@
+{ "bitcoin":{ 
+	"price":"",
+	"amount": "" 
+	},
+		
+"ethereum":{
+	"price":"", 
+	"amount":"" 
+	},
+
+"litecoin":{ 
+	"price":"", 
+	"amount": "" 
+	}
+}
